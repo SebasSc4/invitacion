@@ -126,16 +126,41 @@ document.addEventListener('DOMContentLoaded', () => {
   setInterval(updateCountdown, 1000);
   updateCountdown();
 
-  // GENERAR EVENTO PARA CALENDARIO DE GOOGLE
+  // GENERAR Y ABRIR EVENTO EN LA APLICACIÓN DE CALENDARIO NATIVA (.ICS)
   const addCalendarBtn = document.getElementById('add-calendar-btn');
   addCalendarBtn.addEventListener('click', () => {
-    const title = encodeURIComponent("1er Cumpleaños de Jaziel Emiliano 🎈");
-    const details = encodeURIComponent("¡Acompáñame a esta aventura! Cumpleaños número 1 de Jaziel Emiliano.");
-    const location = encodeURIComponent("https://maps.app.goo.gl/5b2S71N1hycsWweD8");
+    const title = "1er Cumpleaños de Jaziel Emiliano 🎈";
+    const description = "¡Acompáñame a esta aventura! Cumpleaños número 1 de Jaziel Emiliano.";
+    const location = "https://maps.app.goo.gl/5b2S71N1hycsWweD8";
     
-    const calendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${currentYear}1010T220000Z/${currentYear}1011T020000Z&details=${details}&location=${location}`;
-    
-    window.open(calendarUrl, '_blank');
+    // Fechas en formato iCalendar (AAAAMMDDTHHMMSSZ en UTC)
+    // 10 de Octubre a las 17:00 CST -> 22:00 UTC
+    const startDate = `${currentYear}1010T220000Z`;
+    const endDate = `${currentYear}1011T020000Z`;
+
+    // Estructura del archivo .ics universal
+    const icsData = 
+`BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Invitacion UP//Jaziel Emiliano//ES
+BEGIN:VEVENT
+SUMMARY:${title}
+DESCRIPTION:${description}
+LOCATION:${location}
+DTSTART:${startDate}
+DTEND:${endDate}
+STATUS:CONFIRMED
+END:VEVENT
+END:VCALENDAR`;
+
+    // Crea un enlace de descarga temporal y lo ejecuta
+    const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8;' });
+    const link = document.createElement('a');
+    link.href = window.URL.createObjectURL(blob);
+    link.setAttribute('download', 'evento-cumpleanos.ics');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   });
 
   // CONFETI AL PRESIONAR BOTÓN DE WHATSAPP O PERSONAJES
