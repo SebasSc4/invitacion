@@ -133,12 +133,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const description = "¡Acompáñame a esta aventura! Cumpleaños número 1 de Jaziel Emiliano.";
     const location = "https://maps.app.goo.gl/5b2S71N1hycsWweD8";
     
-    // Fechas en formato iCalendar (AAAAMMDDTHHMMSSZ en UTC)
-    // 10 de Octubre a las 17:00 CST -> 22:00 UTC
     const startDate = `${currentYear}1010T220000Z`;
     const endDate = `${currentYear}1011T020000Z`;
 
-    // Estructura del archivo .ics universal
     const icsData = 
 `BEGIN:VCALENDAR
 VERSION:2.0
@@ -153,7 +150,6 @@ STATUS:CONFIRMED
 END:VEVENT
 END:VCALENDAR`;
 
-    // Crea un enlace de descarga temporal y lo ejecuta
     const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8;' });
     const link = document.createElement('a');
     link.href = window.URL.createObjectURL(blob);
@@ -163,7 +159,7 @@ END:VCALENDAR`;
     document.body.removeChild(link);
   });
 
-  // CONFETI AL PRESIONAR BOTÓN DE WHATSAPP O PERSONAJES
+  // CONFETI AL PRESIONAR BOTÓN DE WHATSAPP
   const rsvpBtn = document.querySelector('.btn-rsvp');
   rsvpBtn.addEventListener('click', () => {
     if (typeof confetti === 'function') {
@@ -173,18 +169,6 @@ END:VCALENDAR`;
         origin: { y: 0.6 }
       });
     }
-  });
-
-  document.querySelectorAll('.char-badge').forEach(badge => {
-    badge.addEventListener('click', () => {
-      if (typeof confetti === 'function') {
-        confetti({
-          particleCount: 30,
-          spread: 50,
-          origin: { y: 0.8 }
-        });
-      }
-    });
   });
 
 });
