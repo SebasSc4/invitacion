@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   
-  // 1. GENERADOR DE GLOBOS FLOTANTES
+  // 1. GENERADOR DE GLOBOS FLOTANTES DE FONDO
   const balloonContainer = document.getElementById('balloon-container');
   const colors = ['#ff3b30', '#4cd964', '#5ac8fa', '#007aff', '#ffcc00', '#ff9500'];
 
@@ -28,17 +28,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   setInterval(createBalloon, 600);
 
-  // 2. CONTROL DEL MOVIMIENTO DE LA CASA CON EL SCROLL
+  // 2. ANIMACIÓN DE LA CASA VOLADORA CON EL SCROLL
   const house = document.querySelector('.floating-house-wrapper');
 
   window.addEventListener('scroll', () => {
     const scrollY = window.scrollY; // Distancia recorrida con el scroll
     
-    // Desplaza verticalmente la casita conforme se avanza
-    const translateY = scrollY * 0.45; 
+    // Hace que la casa ascienda (suba hacia arriba) mientras el usuario baja en la página
+    const translateY = -(scrollY * 0.85); 
     
-    // Le da un bamboleo natural
-    const rotate = Math.sin(scrollY / 25) * 6; 
+    // Le da un bamboleo suave como si estuviera flotando en el viento
+    const rotate = Math.sin(scrollY / 20) * 4; 
 
     if (house) {
       house.style.transform = `translateY(${translateY}px) rotate(${rotate}deg)`;
