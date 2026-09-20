@@ -66,13 +66,13 @@ body {
   100% { transform: translateY(-120vh) rotate(15deg); opacity: 0; }
 }
 
-/* Casa de UP Flotante Grande en el Fondo (Transparente PNG) */
+/* Casa de UP Flotante Más Grande en el Fondo */
 .floating-house-wrapper {
   position: fixed;
-  bottom: -100px;
-  right: max(-10px, calc(50% - 400px));
-  width: 300px; /* Tamaño destacado */
-  z-index: 2; /* Por detrás de la tarjeta principal */
+  bottom: -120px;
+  right: max(-20px, calc(50% - 440px));
+  width: 380px; /* Agrandada considerablemente */
+  z-index: 2; /* Queda por detrás de la tarjeta principal */
   pointer-events: none;
   transition: transform 0.1s ease-out;
 }
@@ -81,14 +81,14 @@ body {
   width: 100%;
   height: auto;
   display: block;
-  filter: drop-shadow(0px 8px 15px rgba(0, 0, 0, 0.25));
+  filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 0.22));
 }
 
 @media (max-width: 600px) {
   .floating-house-wrapper {
-    right: -20px;
-    width: 220px; /* Tamaño adaptado a celulares */
-    bottom: -60px;
+    right: -30px;
+    width: 280px; /* Tamaño adaptado para pantallas de celular */
+    bottom: -80px;
   }
 }
 
@@ -129,17 +129,18 @@ body {
   100% { box-shadow: 0 0 0 0 rgba(0, 114, 188, 0); }
 }
 
-/* Tarjeta Principal */
+/* Tarjeta Principal Con Fondo Más Tenue/Translúcido */
 .app-card {
   width: 100%;
   max-width: 430px;
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.75); /* Fondo tenue más translúcido */
+  backdrop-filter: blur(12px); /* Difuminado cristalino más suave */
+  -webkit-backdrop-filter: blur(12px);
   border-radius: var(--card-radius);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.18);
   z-index: 10;
   overflow: hidden;
-  border: 4px solid var(--cloud-white);
+  border: 2px solid rgba(255, 255, 255, 0.8);
   position: relative;
   margin-top: 40px;
 }
@@ -226,7 +227,7 @@ body {
 }
 
 .date-badge, .time-badge {
-  background: rgba(135, 206, 235, 0.2);
+  background: rgba(135, 206, 235, 0.3);
   padding: 10px;
   border-radius: 12px;
   font-weight: 700;
@@ -251,7 +252,7 @@ body {
 }
 
 .char-badge {
-  background: white;
+  background: rgba(255, 255, 255, 0.9);
   border: 2px solid #ddd;
   padding: 6px 12px;
   border-radius: 20px;
@@ -267,7 +268,7 @@ body {
 }
 
 .section-card {
-  background: white;
+  background: rgba(255, 255, 255, 0.85);
   padding: 20px;
   border-radius: 18px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
@@ -338,7 +339,7 @@ body {
 
 /* Temporizador */
 .countdown-card {
-  background: linear-gradient(135deg, #e0f7fa, #fff);
+  background: linear-gradient(135deg, rgba(224, 247, 250, 0.85), rgba(255, 255, 255, 0.85));
   padding: 16px;
   border-radius: 16px;
   margin-bottom: 20px;
@@ -359,7 +360,7 @@ body {
 }
 
 .time-box {
-  background: white;
+  background: rgba(255, 255, 255, 0.9);
   padding: 8px 4px;
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.06);
