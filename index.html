@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>¡Acompáñame a esta Aventura! - Jaziel Emiliano</title>
+  
+  <!-- Fuentes e Íconos -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Contenedor de Globos Animados en Segundo Plano -->
+  <div id="balloon-container" aria-hidden="true"></div>
+
+  <!-- Botón Flotante para Música -->
+  <button id="music-btn" title="Activar/Desactivar Música">
+    <i class="fa-solid fa-music"></i>
+  </button>
+  <audio id="bg-music" loop preload="auto">
+    <source src="https://assets.mixkit.co/music/preview/mixkit-playful-child-682.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- CONTENEDOR PRINCIPAL TIPO MÓVIL -->
+  <div class="app-card">
+
+    <!-- SECCIÓN 1: PORTADA -->
+    <section id="hero" class="section">
+      <div class="sky-header">
+        <h2 class="sub-title">Acompáñame a esta</h2>
+        <h1 class="main-title">Aventura</h1>
+        <div class="name-badge">JAZIEL EMILIANO</div>
+        <p class="age-text">Está cumpliendo su <strong>1<sup>er</sup> Año</strong></p>
+      </div>
+
+      <!-- Imagen Central / Foto del Festejado -->
+      <div class="photo-container">
+        <div class="floating-house-wrapper">
+          <img src="https://images.unsplash.com/photo-1543332164-6e82f355badc?auto=format&fit=crop&q=80&w=400" alt="Casa de Up" class="house-img" />
+        </div>
+        <div class="photo-frame">
+          <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&q=80&w=600" alt="Jaziel Emiliano" class="baby-photo" />
+        </div>
+      </div>
+
+      <!-- Detalles Fecha y Hora -->
+      <div class="event-meta">
+        <div class="date-badge">
+          <i class="fa-regular fa-calendar-check"></i>
+          <span>SÁBADO 10 DE OCTUBRE</span>
+        </div>
+        <div class="time-badge">
+          <i class="fa-regular fa-clock"></i>
+          <span>A LAS 5:00 PM</span>
+        </div>
+      </div>
+
+      <!-- Personajes Interactivos -->
+      <div class="characters-row">
+        <div class="char-badge" title="¡Hola, soy Dug!">🐶 Dug</div>
+        <div class="char-badge" title="¡Señor Fredricksen!">🎈 Carl</div>
+        <div class="char-badge" title="¡Aventura nos aguarda!">🪶 Kevin</div>
+      </div>
+
+      <a href="#detalles" class="btn-primary scroll-btn">
+        <span>VER DETALLES Y UBICACIÓN</span>
+        <i class="fa-solid fa-chevron-down"></i>
+      </a>
+    </section>
+
+
+    <!-- SECCIÓN 2: DETALLES Y MAPA -->
+    <section id="detalles" class="section">
+      <div class="section-card">
+        <h3 class="section-heading">Te esperamos en:</h3>
+        <p class="address-text">
+          <i class="fa-solid fa-location-dot"></i><br>
+          <strong>CDA CAMINO SIN NOMBRE</strong><br>
+          SAN MATEO TECALCO
+        </p>
+
+        <!-- Botones de Acción Principal -->
+        <div class="action-buttons">
+          <a href="https://maps.google.com/?q=San+Mateo+Tecalco" target="_blank" rel="noopener" class="btn-action btn-location">
+            <i class="fa-solid fa-map-location-dot"></i>
+            <span>UBICACIÓN</span>
+          </a>
+
+          <a href="https://wa.me/?text=%C2%A1Hola!%20Confirmo%20mi%20asistencia%20al%20cumplea%C3%B1os%20de%20Jaziel%20Emiliano.%20%C2%A1All%C3%A1%20nos%20vemos!" target="_blank" rel="noopener" class="btn-action btn-rsvp">
+            <i class="fa-brands fa-whatsapp"></i>
+            <span>CONFIRMAR ASISTENCIA</span>
+          </a>
+        </div>
+
+        <div class="callout-banner">¡NO FALTES!</div>
+      </div>
+
+      <!-- Temporizador en Tiempo Real -->
+      <div class="countdown-card">
+        <h4>FALTAN PARA LA AVENTURA:</h4>
+        <div class="timer-grid">
+          <div class="time-box">
+            <span id="days">00</span>
+            <small>DÍAS</small>
+          </div>
+          <div class="time-box">
+            <span id="hours">00</span>
+            <small>HORAS</small>
+          </div>
+          <div class="time-box">
+            <span id="minutes">00</span>
+            <small>MINS</small>
+          </div>
+          <div class="time-box">
+            <span id="seconds">00</span>
+            <small>SEGS</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botón para Agendar en Calendario -->
+      <button id="add-calendar-btn" class="btn-secondary">
+        <i class="fa-solid fa-calendar-plus"></i> Guardar en mi Calendario
+      </button>
+
+      <footer class="footer-note">
+        🎈 La aventura nos espera • UP 🎈
+      </footer>
+    </section>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
