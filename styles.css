@@ -82,6 +82,48 @@ body {
   margin-bottom: 24px;
 }
 
+/* Botón de Entrada Principal Mejorado */
+#start-btn {
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  background: linear-gradient(135deg, #ff416c, #ff4b2b);
+  color: white;
+  padding: 16px 24px;
+  border-radius: 50px;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  box-shadow: 0 8px 20px rgba(255, 65, 108, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  animation: pulseButton 2s infinite;
+}
+
+#start-btn:hover {
+  transform: translateY(-3deg) scale(1.02);
+  box-shadow: 0 12px 25px rgba(255, 65, 108, 0.6);
+}
+
+#start-btn:active {
+  transform: translateY(1deg) scale(0.98);
+}
+
+@keyframes pulseButton {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 65, 108, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(255, 65, 108, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 65, 108, 0);
+  }
+}
+
 @keyframes popIn {
   from { transform: scale(0.8); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
