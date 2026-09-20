@@ -28,7 +28,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
   setInterval(createBalloon, 600);
 
-  // 2. REPRODUCTOR DE MÚSICA DE FONDO
+  // 2. CONTROL DEL MOVIMIENTO DE LA CASA CON EL SCROLL
+  const house = document.querySelector('.floating-house-wrapper');
+
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY; // Distancia recorrida con el scroll
+    
+    // Ajusta la posición vertical según el recorrido del usuario
+    const translateY = scrollY * 0.45; 
+    
+    // Añade una leve oscilación natural estilo globo al bajar o subir
+    const rotate = Math.sin(scrollY / 30) * 5; 
+
+    if (house) {
+      house.style.transform = `translateY(${translateY}px) rotate(${rotate}deg)`;
+    }
+  });
+
+  // 3. REPRODUCTOR DE MÚSICA DE FONDO
   const musicBtn = document.getElementById('music-btn');
   const bgMusic = document.getElementById('bg-music');
   let isPlaying = false;
@@ -49,12 +66,10 @@ document.addEventListener('DOMContentLoaded', () => {
     isPlaying = !isPlaying;
   });
 
-  // 3. TEMPORIZADOR DE CUENTA REGRESIVA
-  // Fecha: 10 de Octubre a las 5:00 PM (17:00)
+  // 4. TEMPORIZADOR DE CUENTA REGRESIVA
   const currentYear = new Date().getFullYear();
   let eventDate = new Date(`October 10, ${currentYear} 17:00:00`).getTime();
 
-  // Si la fecha de este año ya pasó, calcula para el siguiente año
   if (new Date().getTime() > eventDate) {
     eventDate = new Date(`October 10, ${currentYear + 1} 17:00:00`).getTime();
   }
@@ -90,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setInterval(updateCountdown, 1000);
   updateCountdown();
 
-  // 4. GENERAR EVENTO PARA CALENDARIO DE GOOGLE
+  // 5. GENERAR EVENTO PARA CALENDARIO DE GOOGLE
   const addCalendarBtn = document.getElementById('add-calendar-btn');
   addCalendarBtn.addEventListener('click', () => {
     const title = encodeURIComponent("1er Cumpleaños de Jaziel Emiliano 🎈");
@@ -102,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.open(calendarUrl, '_blank');
   });
 
-  // 5. CONFETI AL PRESIONAR BOTÓN DE WHATSAPP O CARACTERES
+  // 6. CONFETI AL PRESIONAR BOTÓN DE WHATSAPP O PERSONAJES
   const rsvpBtn = document.querySelector('.btn-rsvp');
   rsvpBtn.addEventListener('click', () => {
     if (typeof confetti === 'function') {
