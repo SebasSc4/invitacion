@@ -34,11 +34,11 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', () => {
     const scrollY = window.scrollY; // Distancia recorrida con el scroll
     
-    // Ajusta la posición vertical según el recorrido del usuario
+    // Desplaza verticalmente la casita conforme se avanza
     const translateY = scrollY * 0.45; 
     
-    // Añade una leve oscilación natural estilo globo al bajar o subir
-    const rotate = Math.sin(scrollY / 30) * 5; 
+    // Le da un bamboleo natural
+    const rotate = Math.sin(scrollY / 25) * 6; 
 
     if (house) {
       house.style.transform = `translateY(${translateY}px) rotate(${rotate}deg)`;
