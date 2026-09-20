@@ -15,6 +15,19 @@
 </head>
 <body>
 
+  <!-- PANTALLA DE BIENVENIDA (Para activar el audio en Android/iPhone) -->
+  <div id="welcome-modal">
+    <div class="welcome-card">
+      <div class="welcome-balloons">🎈🎈🎈</div>
+      <h2>¡Tienes una invitación a una Aventura!</h2>
+      <p>Cumpleaños de Jaziel Emiliano</p>
+      <button id="start-btn" class="btn-primary">
+        <span>ABRIR INVITACIÓN</span>
+        <i class="fa-solid fa-envelope-open"></i>
+      </button>
+    </div>
+  </div>
+
   <!-- Contenedor de Globos Animados en Segundo Plano -->
   <div id="balloon-container" aria-hidden="true"></div>
 
@@ -23,12 +36,14 @@
     <img src="casa.png" alt="Casa de UP" class="house-img" />
   </div>
 
-  <!-- Botón Flotante para Música -->
+  <!-- Botón Flotante para Controlar Música -->
   <button id="music-btn" title="Activar/Desactivar Música">
     <i class="fa-solid fa-music"></i>
   </button>
+  
+  <!-- ARCHIVO DE AUDIO LOCAL -->
   <audio id="bg-music" loop preload="auto">
-    <source src="https://assets.mixkit.co/music/preview/mixkit-playful-child-682.mp3" type="audio/mpeg">
+    <source src="musica.mp3" type="audio/mpeg">
   </audio>
 
   <!-- CONTENEDOR PRINCIPAL TIPO MÓVIL -->

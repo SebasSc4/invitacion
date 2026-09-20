@@ -28,6 +28,65 @@ body {
   position: relative;
 }
 
+/* Modal de Bienvenida (Sobre Inicial) */
+#welcome-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(33, 147, 176, 0.85);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+#welcome-modal.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.welcome-card {
+  background: white;
+  padding: 30px 24px;
+  border-radius: 24px;
+  text-align: center;
+  max-width: 360px;
+  width: 100%;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+  border: 3px solid var(--cloud-white);
+  animation: popIn 0.4s ease-out;
+}
+
+.welcome-balloons {
+  font-size: 2.2rem;
+  margin-bottom: 12px;
+}
+
+.welcome-card h2 {
+  font-family: 'Fredoka', sans-serif;
+  color: var(--primary-blue);
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+}
+
+.welcome-card p {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 24px;
+}
+
+@keyframes popIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
 /* Efecto de Globos Flotantes de Fondo */
 #balloon-container {
   position: fixed;
@@ -71,8 +130,8 @@ body {
   position: fixed;
   bottom: -120px;
   right: max(-20px, calc(50% - 440px));
-  width: 380px; /* Agrandada considerablemente */
-  z-index: 2; /* Queda por detrás de la tarjeta principal */
+  width: 380px;
+  z-index: 2;
   pointer-events: none;
   transition: transform 0.1s ease-out;
 }
@@ -87,7 +146,7 @@ body {
 @media (max-width: 600px) {
   .floating-house-wrapper {
     right: -30px;
-    width: 280px; /* Tamaño adaptado para pantallas de celular */
+    width: 280px;
     bottom: -80px;
   }
 }
@@ -133,8 +192,8 @@ body {
 .app-card {
   width: 100%;
   max-width: 430px;
-  background: rgba(255, 255, 255, 0.75); /* Fondo tenue más translúcido */
-  backdrop-filter: blur(12px); /* Difuminado cristalino más suave */
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-radius: var(--card-radius);
   box-shadow: 0 20px 40px rgba(0,0,0,0.18);

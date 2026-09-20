@@ -1,6 +1,52 @@
 document.addEventListener('DOMContentLoaded', () => {
   
-  // 1. GENERADOR DE GLOBOS FLOTANTES DE FONDO
+  const startBtn = document.getElementById('start-btn');
+  const welcomeModal = document.getElementById('welcome-modal');
+  const musicBtn = document.getElementById('music-btn');
+  const bgMusic = document.getElementById('bg-music');
+  let isPlaying = false;
+
+  // FUNCIÓN PARA INICIAR MÚSICA AL ABRIR LA INVITACIÓN
+  startBtn.addEventListener('click', () => {
+    welcomeModal.classList.add('hidden');
+    
+    // Intenta reproducir la música inmediatamente al dar clic
+    bgMusic.play().then(() => {
+      isPlaying = true;
+      musicBtn.classList.add('playing');
+      musicBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+    }).catch(err => {
+      console.log("No se pudo iniciar el audio automático:", err);
+    });
+
+    // Lanza confeti de bienvenida
+    if (typeof confetti === 'function') {
+      confetti({
+        particleCount: 120,
+        spread: 80,
+        origin: { y: 0.6 }
+      });
+    }
+  });
+
+  // BOTÓN FLOTANTE PARA PAUSAR / REPRODUCIR MÚSICA
+  musicBtn.addEventListener('click', () => {
+    if (isPlaying) {
+      bgMusic.pause();
+      musicBtn.classList.remove('playing');
+      musicBtn.innerHTML = '<i class="fa-solid fa-music"></i>';
+    } else {
+      bgMusic.play().then(() => {
+        musicBtn.classList.add('playing');
+        musicBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+      }).catch(err => {
+        console.log("Error al reproducir audio:", err);
+      });
+    }
+    isPlaying = !isPlaying;
+  });
+
+  // GENERADOR DE GLOBOS FLOTANTES DE FONDO
   const balloonContainer = document.getElementById('balloon-container');
   const colors = ['#ff3b30', '#4cd964', '#5ac8fa', '#007aff', '#ffcc00', '#ff9500'];
 
@@ -28,16 +74,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   setInterval(createBalloon, 600);
 
-  // 2. ANIMACIÓN DE LA CASA VOLADORA CON EL SCROLL
+  // ANIMACIÓN DE LA CASA VOLADORA CON EL SCROLL
   const house = document.querySelector('.floating-house-wrapper');
 
   window.addEventListener('scroll', () => {
-    const scrollY = window.scrollY; // Distancia recorrida con el scroll
-    
-    // Hace que la casa ascienda mientras el usuario baja en la página
+    const scrollY = window.scrollY;
     const translateY = -(scrollY * 0.85); 
-    
-    // Bamboleo suave
     const rotate = Math.sin(scrollY / 20) * 4; 
 
     if (house) {
@@ -45,28 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 3. REPRODUCTOR DE MÚSICA DE FONDO
-  const musicBtn = document.getElementById('music-btn');
-  const bgMusic = document.getElementById('bg-music');
-  let isPlaying = false;
-
-  musicBtn.addEventListener('click', () => {
-    if (isPlaying) {
-      bgMusic.pause();
-      musicBtn.classList.remove('playing');
-      musicBtn.innerHTML = '<i class="fa-solid fa-music"></i>';
-    } else {
-      bgMusic.play().then(() => {
-        musicBtn.classList.add('playing');
-        musicBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
-      }).catch(err => {
-        console.log("Error al reproducir audio:", err);
-      });
-    }
-    isPlaying = !isPlaying;
-  });
-
-  // 4. TEMPORIZADOR DE CUENTA REGRESIVA
+  // TEMPORIZADOR DE CUENTA REGRESIVA
   const currentYear = new Date().getFullYear();
   let eventDate = new Date(`October 10, ${currentYear} 17:00:00`).getTime();
 
@@ -105,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setInterval(updateCountdown, 1000);
   updateCountdown();
 
-  // 5. GENERAR EVENTO PARA CALENDARIO DE GOOGLE CON LA NUEVA UBICACIÓN
+  // GENERAR EVENTO PARA CALENDARIO DE GOOGLE
   const addCalendarBtn = document.getElementById('add-calendar-btn');
   addCalendarBtn.addEventListener('click', () => {
     const title = encodeURIComponent("1er Cumpleaños de Jaziel Emiliano 🎈");
@@ -117,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.open(calendarUrl, '_blank');
   });
 
-  // 6. CONFETI AL PRESIONAR BOTÓN DE WHATSAPP O PERSONAJES
+  // CONFETI AL PRESIONAR BOTÓN DE WHATSAPP O PERSONAJES
   const rsvpBtn = document.querySelector('.btn-rsvp');
   rsvpBtn.addEventListener('click', () => {
     if (typeof confetti === 'function') {
