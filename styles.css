@@ -245,7 +245,7 @@ body {
   border-top: 2px dashed rgba(0, 114, 188, 0.2);
 }
 
-/* PERSONAJES FLOTANDO EN LOS BORDES EXTERIORES */
+/* PERSONAJES MÁS GRANDES FLOTANDO EN LOS BORDES */
 .char-float {
   position: absolute;
   z-index: 20;
@@ -255,42 +255,42 @@ body {
 .char-float img {
   width: 100%;
   height: auto;
-  filter: drop-shadow(0 8px 12px rgba(0,0,0,0.22));
+  filter: drop-shadow(0 10px 15px rgba(0,0,0,0.22));
 }
 
-/* Carl: Arriba a la Derecha */
+/* Carl: Esquina superior derecha */
 .char-carl {
-  top: -45px;
-  right: -25px;
-  width: 110px;
+  top: -65px;
+  right: -45px;
+  width: 150px;
   animation: floatSoft 3s ease-in-out infinite alternate;
 }
 
-/* Dug: Lateral Izquierdo (Junto a la foto) */
+/* Dug: Lateral izquierdo (junto a la foto) */
 .char-dug {
-  top: 210px;
-  left: -35px;
-  width: 100px;
+  top: 200px;
+  left: -55px;
+  width: 140px;
   animation: floatSoft 3.5s ease-in-out infinite alternate-reverse;
 }
 
-/* Kevin: Abajo a la Izquierda */
+/* Kevin: Abajo a la izquierda */
 .char-kevin {
-  bottom: 120px;
-  left: -30px;
-  width: 110px;
+  bottom: 100px;
+  left: -50px;
+  width: 155px;
   animation: floatSoft 4s ease-in-out infinite alternate;
 }
 
 @keyframes floatSoft {
   0% { transform: translateY(0) rotate(-2deg); }
-  100% { transform: translateY(-8px) rotate(2deg); }
+  100% { transform: translateY(-10px) rotate(2deg); }
 }
 
 @media (max-width: 480px) {
-  .char-carl { width: 90px; right: -15px; top: -35px; }
-  .char-dug { width: 80px; left: -20px; }
-  .char-kevin { width: 90px; left: -20px; }
+  .char-carl { width: 120px; right: -30px; top: -50px; }
+  .char-dug { width: 110px; left: -35px; }
+  .char-kevin { width: 120px; left: -35px; }
 }
 
 /* Títulos y Portada */
