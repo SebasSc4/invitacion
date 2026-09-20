@@ -229,7 +229,7 @@ body {
   border-radius: var(--card-radius);
   box-shadow: 0 20px 40px rgba(0,0,0,0.18);
   z-index: 10;
-  overflow: hidden;
+  overflow: visible; /* Permite que los personajes sobresalgan */
   border: 2px solid rgba(255, 255, 255, 0.8);
   position: relative;
   margin-top: 40px;
@@ -243,6 +243,54 @@ body {
 
 #detalles {
   border-top: 2px dashed rgba(0, 114, 188, 0.2);
+}
+
+/* PERSONAJES FLOTANDO EN LOS BORDES EXTERIORES */
+.char-float {
+  position: absolute;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.char-float img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 8px 12px rgba(0,0,0,0.22));
+}
+
+/* Carl: Arriba a la Derecha */
+.char-carl {
+  top: -45px;
+  right: -25px;
+  width: 110px;
+  animation: floatSoft 3s ease-in-out infinite alternate;
+}
+
+/* Dug: Lateral Izquierdo (Junto a la foto) */
+.char-dug {
+  top: 210px;
+  left: -35px;
+  width: 100px;
+  animation: floatSoft 3.5s ease-in-out infinite alternate-reverse;
+}
+
+/* Kevin: Abajo a la Izquierda */
+.char-kevin {
+  bottom: 120px;
+  left: -30px;
+  width: 110px;
+  animation: floatSoft 4s ease-in-out infinite alternate;
+}
+
+@keyframes floatSoft {
+  0% { transform: translateY(0) rotate(-2deg); }
+  100% { transform: translateY(-8px) rotate(2deg); }
+}
+
+@media (max-width: 480px) {
+  .char-carl { width: 90px; right: -15px; top: -35px; }
+  .char-dug { width: 80px; left: -20px; }
+  .char-kevin { width: 90px; left: -20px; }
 }
 
 /* Títulos y Portada */
@@ -331,30 +379,6 @@ body {
 .date-badge {
   color: #d9381e;
   font-size: 1.1rem;
-}
-
-/* PERSONAJES DECORATIVOS ELEGANTES (SIN BOTÓN) */
-.characters-row {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  gap: 18px;
-  margin-top: 15px;
-  margin-bottom: 10px;
-}
-
-.char-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none; /* No interactivo */
-}
-
-.char-img {
-  width: 75px;
-  height: 75px;
-  object-fit: contain;
-  filter: drop-shadow(0 6px 10px rgba(0,0,0,0.18));
 }
 
 .section-card {
