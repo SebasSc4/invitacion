@@ -34,10 +34,10 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', () => {
     const scrollY = window.scrollY; // Distancia recorrida con el scroll
     
-    // Hace que la casa ascienda (suba hacia arriba) mientras el usuario baja en la página
+    // Hace que la casa ascienda mientras el usuario baja en la página
     const translateY = -(scrollY * 0.85); 
     
-    // Le da un bamboleo suave como si estuviera flotando en el viento
+    // Bamboleo suave
     const rotate = Math.sin(scrollY / 20) * 4; 
 
     if (house) {
@@ -105,12 +105,12 @@ document.addEventListener('DOMContentLoaded', () => {
   setInterval(updateCountdown, 1000);
   updateCountdown();
 
-  // 5. GENERAR EVENTO PARA CALENDARIO DE GOOGLE
+  // 5. GENERAR EVENTO PARA CALENDARIO DE GOOGLE CON LA NUEVA UBICACIÓN
   const addCalendarBtn = document.getElementById('add-calendar-btn');
   addCalendarBtn.addEventListener('click', () => {
     const title = encodeURIComponent("1er Cumpleaños de Jaziel Emiliano 🎈");
     const details = encodeURIComponent("¡Acompáñame a esta aventura! Cumpleaños número 1 de Jaziel Emiliano.");
-    const location = encodeURIComponent("CDA CAMINO SIN NOMBRE, SAN MATEO TECALCO");
+    const location = encodeURIComponent("https://maps.app.goo.gl/5b2S71N1hycsWweD8");
     
     const calendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${currentYear}1010T220000Z/${currentYear}1011T020000Z&details=${details}&location=${location}`;
     
