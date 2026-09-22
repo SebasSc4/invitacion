@@ -240,9 +240,9 @@ body {
   animation: floatSoft 3.2s ease-in-out infinite alternate;
 }
 
-/* Carl en el lateral izquierdo (donde estaba Dug) */
+/* Carl en el lateral izquierdo: Se bajó la posición a top: 250px para separarlo de Dug */
 .char-carl {
-  top: 180px;
+  top: 250px;
   left: -70px;
   width: 165px;
   animation: floatSoft 3.5s ease-in-out infinite alternate-reverse;
@@ -263,7 +263,7 @@ body {
 
 @media (max-width: 480px) {
   .char-house { width: 140px; right: -35px; top: -60px; }
-  .char-carl { width: 130px; left: -45px; }
+  .char-carl { width: 130px; left: -45px; top: 220px; }
   .char-kevin { width: 140px; left: -45px; }
 }
 
@@ -340,11 +340,11 @@ body {
   filter: drop-shadow(0 6px 12px rgba(0,0,0,0.22));
 }
 
-/* Dug en la esquina superior izquierda del marco */
+/* Dug en la esquina superior izquierda del marco: Agrandado a width: 130px */
 .photo-dug {
-  top: -30px;
-  left: -30px;
-  width: 110px;
+  top: -35px;
+  left: -40px;
+  width: 130px;
   animation: floatSoft 3.6s ease-in-out infinite alternate-reverse;
 }
 
