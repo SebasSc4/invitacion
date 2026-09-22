@@ -74,19 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   setInterval(createBalloon, 600);
 
-  // ANIMACIÓN DE LA CASA VOLADORA CON EL SCROLL
-  const house = document.querySelector('.floating-house-wrapper');
-
-  window.addEventListener('scroll', () => {
-    const scrollY = window.scrollY;
-    const translateY = -(scrollY * 0.85); 
-    const rotate = Math.sin(scrollY / 20) * 4; 
-
-    if (house) {
-      house.style.transform = `translateY(${translateY}px) rotate(${rotate}deg)`;
-    }
-  });
-
   // TEMPORIZADOR DE CUENTA REGRESIVA
   const currentYear = new Date().getFullYear();
   let eventDate = new Date(`October 10, ${currentYear} 17:00:00`).getTime();
