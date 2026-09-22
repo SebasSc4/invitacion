@@ -1,156 +1,192 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>¡Acompáñame a esta Aventura! - Jaziel Emiliano</title>
+  <title>Libro de Aventuras - 1er Año de Jaziel Emiliano</title>
   
-  <!-- Fuentes e Íconos -->
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            craftBg: '#f4ebd0',
+            paperWhite: '#fffdf9',
+            leatherBrown: '#5c3d2e',
+            rustOrange: '#d9531e',
+            vintageGold: '#e0a96d',
+          },
+          fontFamily: {
+            adventure: ['Fredoka', 'sans-serif'],
+            handwritten: ['Caveat', 'cursive'],
+            body: ['Outfit', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts & FontAwesome -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Fredoka:wght@600;700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
+<body class="bg-[#e2d5be] min-h-screen font-body text-slate-800 antialiased flex flex-col items-center justify-center p-3 sm:p-6 relative overflow-x-hidden">
 
-  <!-- PANTALLA DE BIENVENIDA -->
-  <div id="welcome-modal">
-    <div class="welcome-card">
-      <div class="welcome-balloons">🎈🎈🎈</div>
-      <h2>¡Tienes una invitación a una Aventura!</h2>
-      <p>Cumpleaños de Jaziel Emiliano</p>
-      <button id="start-btn">
-        <span>ABRIR INVITACIÓN</span>
-        <i class="fa-solid fa-envelope-open"></i>
+  <!-- MODAL PANTALLA DE BIENVENIDA -->
+  <div id="welcome-modal" class="fixed inset-0 bg-stone-900/80 backdrop-blur-md z-50 flex items-center justify-center p-4 transition-all duration-500">
+    <div class="bg-[#f7f1e3] border-4 border-[#b89772] rounded-3xl p-8 max-w-sm w-full text-center shadow-2xl relative overflow-hidden">
+      <div class="absolute -top-6 -right-6 text-6xl opacity-20">🎈</div>
+      <div class="w-16 h-16 bg-amber-500 text-white rounded-full flex items-center justify-center mx-auto text-3xl shadow-md mb-4 border-2 border-white">
+        <i class="fa-solid fa-compass"></i>
+      </div>
+      <h2 class="font-adventure text-2xl font-bold text-stone-800 mb-2">¡NUEVA AVENTURA!</h2>
+      <p class="font-handwritten text-xl text-amber-900 mb-6">Estás invitado al 1er Capítulo de Jaziel Emiliano</p>
+      <button id="start-btn" class="w-full bg-[#d9531e] hover:bg-[#b84214] text-white font-adventure text-lg py-4 px-6 rounded-2xl shadow-lg transition duration-300 flex items-center justify-center gap-3 border-b-4 border-amber-900 active:translate-y-1">
+        <span>ABRIR LIBRO DE AVENTURAS</span>
+        <i class="fa-solid fa-book-open"></i>
       </button>
     </div>
   </div>
 
-  <!-- Contenedor de Globos Animados en Segundo Plano -->
-  <div id="balloon-container" aria-hidden="true"></div>
+  <!-- Globos en segundo plano -->
+  <div id="balloon-container" class="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true"></div>
 
-  <!-- Botón Flotante para Controlar Música -->
-  <button id="music-btn" title="Activar/Desactivar Música">
+  <!-- Botón de Música Flotante con estilo brújula/placa -->
+  <button id="music-btn" title="Activar/Desactivar Música" class="fixed top-5 right-5 z-40 w-12 h-12 rounded-full bg-[#fffdf9] border-2 border-[#5c3d2e] text-[#5c3d2e] shadow-xl flex items-center justify-center text-xl hover:scale-110 transition duration-300">
     <i class="fa-solid fa-music"></i>
   </button>
   
-  <!-- ARCHIVO DE AUDIO LOCAL -->
   <audio id="bg-music" loop preload="auto">
     <source src="Married-Life.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- CONTENEDOR PRINCIPAL TIPO MÓVIL -->
-  <div class="app-card">
-
-    <!-- PERSONAJES UBICADOS EN LOS BORDES EXTERIORES -->
-    <div class="char-float char-house">
-      <img src="casa.png" alt="Casa de UP" />
-    </div>
-    <div class="char-float char-carl">
-      <img src="carl.png" alt="Carl" />
-    </div>
-    <div class="char-float char-kevin">
-      <img src="kevin.png" alt="Kevin" />
+  <!-- LIBRO / SCRAPBOOK PRINCIPAL -->
+  <main class="w-full max-w-md bg-[#f4ebd0] rounded-[2rem] shadow-2xl border-8 border-[#5c3d2e] relative z-10 overflow-hidden my-4 p-5 sm:p-7">
+    
+    <!-- Costura / Broche del Libro superior -->
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-4 bg-[#422a1f] rounded-b-xl shadow-md flex items-center justify-around px-2">
+      <div class="w-2 h-2 rounded-full bg-amber-400"></div>
+      <div class="w-2 h-2 rounded-full bg-amber-400"></div>
     </div>
 
-    <!-- SECCIÓN 1: PORTADA -->
-    <section id="hero" class="section">
-      <div class="sky-header">
-        <h2 class="sub-title">Acompáñame a esta</h2>
-        <h1 class="main-title">Aventura</h1>
-        <div class="name-badge">JAZIEL EMILIANO</div>
-        <p class="age-text">Está cumpliendo su <strong>1<sup>er</sup> Año</strong></p>
+    <!-- ENCABEZADO TIPO DIARIO DE VIAJE -->
+    <header class="text-center pt-4 pb-2 relative">
+      <span class="font-handwritten text-2xl text-amber-800 font-bold -rotate-2 inline-block">
+        Capítulo 1 • Mi Primer Año
+      </span>
+      <h1 class="font-adventure text-4xl sm:text-5xl text-[#5c3d2e] tracking-wide uppercase drop-shadow-sm mt-1">
+        Aventura Awaits
+      </h1>
+      <div class="inline-block bg-[#d9531e] text-white font-adventure text-lg px-6 py-1 rounded-full shadow-md rotate-1 my-2 border-2 border-dashed border-amber-200">
+        JAZIEL EMILIANO
+      </div>
+    </header>
+
+    <!-- FOTO ESTILO POLAROID CON TAPE -->
+    <div class="relative my-6 px-2">
+      <!-- Tape / Cinta Adhesiva superior -->
+      <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-28 h-7 bg-amber-100/70 backdrop-blur-sm -rotate-3 z-20 shadow-sm border-x-2 border-dashed border-amber-300/50"></div>
+      
+      <!-- Marco Polaroid -->
+      <div class="bg-white p-4 pb-8 rounded-lg shadow-xl border border-stone-200 rotate-1 transform transition hover:rotate-0 duration-300">
+        <div class="w-full aspect-[4/5] rounded overflow-hidden border border-stone-100">
+          <img src="portada.jpeg" alt="Jaziel Emiliano" class="w-full h-full object-cover" />
+        </div>
+        <p class="font-handwritten text-2xl text-center text-stone-700 mt-3 font-bold">
+          "La aventura nos aguarda" 🎈
+        </p>
+      </div>
+    </div>
+
+    <!-- NOTA DE DETALLES DEL EVENTO (STICKY NOTE) -->
+    <section class="bg-[#fffdf9] p-5 rounded-2xl shadow-md border-2 border-stone-300/80 -rotate-1 relative my-6">
+      <!-- Pin o Chincheta decorativa -->
+      <div class="absolute -top-3 left-6 w-6 h-6 bg-red-600 rounded-full border-2 border-white shadow-md"></div>
+      
+      <h3 class="font-adventure text-xl text-[#5c3d2e] text-center border-b-2 border-dashed border-amber-200 pb-2 mb-4">
+        📌 Coordenadas del Evento
+      </h3>
+
+      <!-- Fecha y Hora -->
+      <div class="grid grid-cols-2 gap-3 text-center mb-4">
+        <div class="bg-amber-100/60 p-2.5 rounded-xl border border-amber-200">
+          <span class="block font-handwritten text-xl text-amber-900 font-bold">Fecha</span>
+          <span class="font-adventure text-sm text-[#5c3d2e]">Sábado 10 Oct</span>
+        </div>
+        <div class="bg-sky-100/60 p-2.5 rounded-xl border border-sky-200">
+          <span class="block font-handwritten text-xl text-sky-900 font-bold">Hora</span>
+          <span class="font-adventure text-sm text-[#5c3d2e]">5:00 PM</span>
+        </div>
       </div>
 
-      <!-- Imagen Central / Foto del Festejado con Dug y Russel -->
-      <div class="photo-container">
-        <div class="photo-frame">
-          <img src="foto-bebe.jpeg" alt="Jaziel Emiliano" class="baby-photo" />
-        </div>
-
-        <!-- Dug y Russel flanqueando las esquinas del marco -->
-        <img src="dug.png" alt="Dug" class="photo-elem photo-dug" />
-        <img src="russel.png" alt="Russel" class="photo-elem photo-russel" />
+      <!-- Dirección -->
+      <div class="text-center bg-stone-50 p-3 rounded-xl border border-stone-200">
+        <i class="fa-solid fa-map-pin text-red-500 text-lg mb-1"></i>
+        <p class="text-xs text-stone-700 font-bold uppercase tracking-wider">Lugar</p>
+        <p class="text-sm font-semibold text-stone-800">CDA CAMINO SIN NOMBRE</p>
+        <p class="text-xs text-stone-500">SAN MATEO TECALCO</p>
       </div>
+    </section>
 
-      <!-- Detalles Fecha y Hora -->
-      <div class="event-meta">
-        <div class="date-badge">
-          <i class="fa-regular fa-calendar-check"></i>
-          <span>SÁBADO 10 DE OCTUBRE</span>
+    <!-- BOTONES DE ACCIÓN (PASAPORTE/MAPA) -->
+    <section class="space-y-3 my-6">
+      <a href="https://maps.app.goo.gl/5b2S71N1hycsWweD8" target="_blank" rel="noopener" class="w-full bg-[#5c3d2e] hover:bg-[#422a1f] text-white font-adventure py-3.5 px-5 rounded-xl shadow-md flex items-center justify-center gap-3 transition duration-200 border-b-4 border-stone-900">
+        <i class="fa-solid fa-compass text-amber-400 text-xl"></i>
+        <span>ABRIR MAPA DE RUTA</span>
+      </a>
+
+      <a href="https://wa.me/525545082617?text=%C2%A1Hola!%20Con%20mucho%20gusto%20confirmo%20mi%20asistencia%20al%20cumplea%C3%B1os%20de%20Jaziel%20Emiliano.%20%C2%A1Nos%20vemos%20en%20la%20aventura!" target="_blank" rel="noopener" id="rsvp-btn" class="w-full bg-[#25d366] hover:bg-[#1ebd59] text-white font-adventure py-3.5 px-5 rounded-xl shadow-md flex items-center justify-center gap-3 transition duration-200 border-b-4 border-green-800">
+        <i class="fa-brands fa-whatsapp text-2xl"></i>
+        <span>CONFIRMAR ASISTENCIA</span>
+      </a>
+    </section>
+
+    <!-- CUANTA REGRESIVA TIPO RELOJ DE VIGÍA -->
+    <section class="bg-[#e0a96d]/30 border-2 border-[#e0a96d] rounded-2xl p-4 text-center my-6">
+      <h4 class="font-adventure text-xs text-[#5c3d2e] tracking-widest uppercase mb-3 font-bold">
+        ⏳ Tiempo para el Despegue
+      </h4>
+      <div class="grid grid-cols-4 gap-2">
+        <div class="bg-white/90 rounded-lg p-2 shadow-sm border border-amber-200">
+          <span id="days" class="block font-adventure text-xl text-[#d9531e]">00</span>
+          <span class="text-[10px] text-stone-500 font-bold uppercase">Días</span>
         </div>
-        <div class="time-badge">
-          <i class="fa-regular fa-clock"></i>
-          <span>A LAS 5:00 PM</span>
+        <div class="bg-white/90 rounded-lg p-2 shadow-sm border border-amber-200">
+          <span id="hours" class="block font-adventure text-xl text-[#d9531e]">00</span>
+          <span class="text-[10px] text-stone-500 font-bold uppercase">Horas</span>
+        </div>
+        <div class="bg-white/90 rounded-lg p-2 shadow-sm border border-amber-200">
+          <span id="minutes" class="block font-adventure text-xl text-[#d9531e]">00</span>
+          <span class="text-[10px] text-stone-500 font-bold uppercase">Mins</span>
+        </div>
+        <div class="bg-white/90 rounded-lg p-2 shadow-sm border border-amber-200">
+          <span id="seconds" class="block font-adventure text-xl text-[#d9531e]">00</span>
+          <span class="text-[10px] text-stone-500 font-bold uppercase">Segs</span>
         </div>
       </div>
     </section>
 
-
-    <!-- SECCIÓN 2: DETALLES Y MAPA -->
-    <section id="detalles" class="section">
-      <div class="section-card">
-        <h3 class="section-heading">Te esperamos en:</h3>
-        <p class="address-text">
-          <i class="fa-solid fa-location-dot"></i><br>
-          <strong>CDA CAMINO SIN NOMBRE</strong><br>
-          SAN MATEO TECALCO
-        </p>
-
-        <!-- Botones de Acción Principal -->
-        <div class="action-buttons">
-          <a href="https://maps.app.goo.gl/5b2S71N1hycsWweD8" target="_blank" rel="noopener" class="btn-action btn-location">
-            <i class="fa-solid fa-map-location-dot"></i>
-            <span>UBICACIÓN</span>
-          </a>
-
-          <a href="https://wa.me/?text=%C2%A1Hola!%20Confirmo%20mi%20asistencia%20al%20cumplea%C3%B1os%20de%20Jaziel%20Emiliano.%20%C2%A1All%C3%A1%20nos%20vemos!" target="_blank" rel="noopener" class="btn-action btn-rsvp">
-            <i class="fa-brands fa-whatsapp"></i>
-            <span>CONFIRMAR ASISTENCIA</span>
-          </a>
-        </div>
-
-        <div class="callout-banner">¡NO FALTES!</div>
-      </div>
-
-      <!-- Temporizador en Tiempo Real -->
-      <div class="countdown-card">
-        <h4>FALTAN PARA LA AVENTURA:</h4>
-        <div class="timer-grid">
-          <div class="time-box">
-            <span id="days">00</span>
-            <small>DÍAS</small>
-          </div>
-          <div class="time-box">
-            <span id="hours">00</span>
-            <small>HORAS</small>
-          </div>
-          <div class="time-box">
-            <span id="minutes">00</span>
-            <small>MINS</small>
-          </div>
-          <div class="time-box">
-            <span id="seconds">00</span>
-            <small>SEGS</small>
-          </div>
-        </div>
-      </div>
-
-      <!-- Botón para Agendar en Calendario -->
-      <button id="add-calendar-btn" class="btn-secondary">
-        <i class="fa-solid fa-calendar-plus"></i> Guardar en mi Calendario
+    <!-- CALENDARIO & FOOTER -->
+    <div class="space-y-4 text-center">
+      <button id="add-calendar-btn" class="w-full bg-white hover:bg-stone-50 text-[#5c3d2e] font-adventure text-sm py-3 px-4 rounded-xl border-2 border-dashed border-[#5c3d2e]/50 shadow-sm transition duration-200 flex items-center justify-center gap-2">
+        <i class="fa-solid fa-calendar-plus text-amber-600"></i>
+        <span>Guardar en mi Calendario</span>
       </button>
 
-      <footer class="footer-note">
-        🎈 La aventura nos espera • UP 🎈
-      </footer>
-    </section>
+      <p class="font-handwritten text-xl text-stone-600">
+        "¡Gracias por ser parte de mi historia!" 🎈
+      </p>
+    </div>
 
-  </div>
+  </main>
 
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script src="script.js"></script>
 </body>
-</html>
+</html> 

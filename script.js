@@ -6,30 +6,29 @@ document.addEventListener('DOMContentLoaded', () => {
   const bgMusic = document.getElementById('bg-music');
   let isPlaying = false;
 
-  // FUNCIÓN PARA INICIAR MÚSICA AL ABRIR LA INVITACIÓN
+  // FUNCIÓN PARA ABRIR LA INVITACIÓN E INICIAR AUDIO Y CONFETI
   startBtn.addEventListener('click', () => {
-    welcomeModal.classList.add('hidden');
+    welcomeModal.classList.add('opacity-0', 'pointer-events-none');
+    setTimeout(() => welcomeModal.remove(), 500);
     
-    // Intenta reproducir la música inmediatamente al dar clic
     bgMusic.play().then(() => {
       isPlaying = true;
       musicBtn.classList.add('playing');
       musicBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
     }).catch(err => {
-      console.log("No se pudo iniciar el audio automático:", err);
+      console.log("Audio automático bloqueado por el navegador:", err);
     });
 
-    // Lanza confeti de bienvenida
     if (typeof confetti === 'function') {
       confetti({
-        particleCount: 120,
-        spread: 80,
+        particleCount: 100,
+        spread: 70,
         origin: { y: 0.6 }
       });
     }
   });
 
-  // BOTÓN FLOTANTE PARA PAUSAR / REPRODUCIR MÚSICA
+  // CONTROL MANUAL DE MÚSICA
   musicBtn.addEventListener('click', () => {
     if (isPlaying) {
       bgMusic.pause();
@@ -46,18 +45,19 @@ document.addEventListener('DOMContentLoaded', () => {
     isPlaying = !isPlaying;
   });
 
-  // GENERADOR DE GLOBOS FLOTANTES DE FONDO
+  // GENERADOR DE GLOBOS FLOTANTES
   const balloonContainer = document.getElementById('balloon-container');
   const colors = ['#ff3b30', '#4cd964', '#5ac8fa', '#007aff', '#ffcc00', '#ff9500'];
 
   function createBalloon() {
+    if (!balloonContainer) return;
     const balloon = document.createElement('div');
     balloon.className = 'balloon';
     
     const randomColor = colors[Math.floor(Math.random() * colors.length)];
     const randomLeft = Math.random() * 100;
-    const randomDuration = 6 + Math.random() * 8;
-    const randomSize = 20 + Math.random() * 20;
+    const randomDuration = 7 + Math.random() * 7;
+    const randomSize = 22 + Math.random() * 18;
 
     balloon.style.backgroundColor = randomColor;
     balloon.style.left = `${randomLeft}%`;
@@ -72,9 +72,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }, randomDuration * 1000);
   }
 
-  setInterval(createBalloon, 600);
+  setInterval(createBalloon, 700);
 
-  // TEMPORIZADOR DE CUENTA REGRESIVA
+  // CUENTA REGRESIVA
   const currentYear = new Date().getFullYear();
   let eventDate = new Date(`October 10, ${currentYear} 17:00:00`).getTime();
 
@@ -92,10 +92,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const distance = eventDate - now;
 
     if (distance < 0) {
-      daysEl.innerText = "00";
-      hoursEl.innerText = "00";
-      minutesEl.innerText = "00";
-      secondsEl.innerText = "00";
+      if (daysEl) daysEl.innerText = "00";
+      if (hoursEl) hoursEl.innerText = "00";
+      if (minutesEl) minutesEl.innerText = "00";
+      if (secondsEl) secondsEl.innerText = "00";
       return;
     }
 
@@ -104,26 +104,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    daysEl.innerText = days < 10 ? `0${days}` : days;
-    hoursEl.innerText = hours < 10 ? `0${hours}` : hours;
-    minutesEl.innerText = minutes < 10 ? `0${minutes}` : minutes;
-    secondsEl.innerText = seconds < 10 ? `0${seconds}` : seconds;
+    if (daysEl) daysEl.innerText = days < 10 ? `0${days}` : days;
+    if (hoursEl) hoursEl.innerText = hours < 10 ? `0${hours}` : hours;
+    if (minutesEl) minutesEl.innerText = minutes < 10 ? `0${minutes}` : minutes;
+    if (secondsEl) secondsEl.innerText = seconds < 10 ? `0${seconds}` : seconds;
   }
 
   setInterval(updateCountdown, 1000);
   updateCountdown();
 
-  // GENERAR Y ABRIR EVENTO EN LA APLICACIÓN DE CALENDARIO NATIVA (.ICS)
+  // GUARDAR EN CALENDARIO (.ICS)
   const addCalendarBtn = document.getElementById('add-calendar-btn');
-  addCalendarBtn.addEventListener('click', () => {
-    const title = "1er Cumpleaños de Jaziel Emiliano 🎈";
-    const description = "¡Acompáñame a esta aventura! Cumpleaños número 1 de Jaziel Emiliano.";
-    const location = "https://maps.app.goo.gl/5b2S71N1hycsWweD8";
-    
-    const startDate = `${currentYear}1010T220000Z`;
-    const endDate = `${currentYear}1011T020000Z`;
+  if (addCalendarBtn) {
+    addCalendarBtn.addEventListener('click', () => {
+      const title = "1er Cumpleaños de Jaziel Emiliano 🎈";
+      const description = "¡Acompáñame a esta aventura! Cumpleaños número 1 de Jaziel Emiliano.";
+      const location = "CDA CAMINO SIN NOMBRE, SAN MATEO TECALCO";
+      
+      const startDate = `${currentYear}1010T220000Z`;
+      const endDate = `${currentYear}1011T020000Z`;
 
-    const icsData = 
+      const icsData = 
 `BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:-//Invitacion UP//Jaziel Emiliano//ES
@@ -137,25 +138,28 @@ STATUS:CONFIRMED
 END:VEVENT
 END:VCALENDAR`;
 
-    const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8;' });
-    const link = document.createElement('a');
-    link.href = window.URL.createObjectURL(blob);
-    link.setAttribute('download', 'evento-cumpleanos.ics');
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  });
+      const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8;' });
+      const link = document.createElement('a');
+      link.href = window.URL.createObjectURL(blob);
+      link.setAttribute('download', 'cumpleanos-jaziel-emiliano.ics');
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    });
+  }
 
-  // CONFETI AL PRESIONAR BOTÓN DE WHATSAPP
-  const rsvpBtn = document.querySelector('.btn-rsvp');
-  rsvpBtn.addEventListener('click', () => {
-    if (typeof confetti === 'function') {
-      confetti({
-        particleCount: 100,
-        spread: 70,
-        origin: { y: 0.6 }
-      });
-    }
-  });
+  // CONFETI AL PRESIONAR CONFIRMAR ASISTENCIA
+  const rsvpBtn = document.getElementById('rsvp-btn');
+  if (rsvpBtn) {
+    rsvpBtn.addEventListener('click', () => {
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: 100,
+          spread: 80,
+          origin: { y: 0.6 }
+        });
+      }
+    });
+  }
 
 });
