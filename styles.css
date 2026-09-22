@@ -219,7 +219,7 @@ body {
   border-top: 2px dashed rgba(0, 114, 188, 0.2);
 }
 
-/* PERSONAJES MÁS GRANDES FLOTANDO EN LOS BORDES EXTERIORES */
+/* PERSONAJES EN LOS BORDES EXTERIORES */
 .char-float {
   position: absolute;
   z-index: 20;
@@ -232,15 +232,15 @@ body {
   filter: drop-shadow(0 12px 18px rgba(0,0,0,0.25));
 }
 
-/* Carl: Esquina superior derecha (Agrandado) */
-.char-carl {
-  top: -85px;
-  right: -60px;
-  width: 180px;
-  animation: floatSoft 3s ease-in-out infinite alternate;
+/* La Casita pasa a la esquina superior derecha (donde estaba Carl) */
+.char-carl-top {
+  top: -80px;
+  right: -55px;
+  width: 175px;
+  animation: floatSoft 3.2s ease-in-out infinite alternate;
 }
 
-/* Dug: Lateral izquierdo (Agrandado) */
+/* Dug pasa al lateral izquierdo (donde estaba la casita) */
 .char-dug {
   top: 180px;
   left: -70px;
@@ -248,7 +248,7 @@ body {
   animation: floatSoft 3.5s ease-in-out infinite alternate-reverse;
 }
 
-/* Kevin: Abajo a la izquierda (Agrandado) */
+/* Kevin: Abajo a la izquierda */
 .char-kevin {
   bottom: 80px;
   left: -65px;
@@ -262,7 +262,7 @@ body {
 }
 
 @media (max-width: 480px) {
-  .char-carl { width: 140px; right: -40px; top: -65px; }
+  .char-carl-top { width: 140px; right: -35px; top: -60px; }
   .char-dug { width: 130px; left: -45px; }
   .char-kevin { width: 140px; left: -45px; }
 }
@@ -332,7 +332,7 @@ body {
   object-position: center 18%;
 }
 
-/* ELEMENTOS JUNTO A LA FOTO (CASITA Y RUSSEL) */
+/* ELEMENTOS JUNTO A LA FOTO (CARL Y RUSSEL) */
 .photo-elem {
   position: absolute;
   z-index: 3;
@@ -340,20 +340,20 @@ body {
   filter: drop-shadow(0 6px 12px rgba(0,0,0,0.22));
 }
 
-/* Casita de UP colocada en la esquina superior izquierda de la foto */
-.photo-house {
-  top: -55px;
-  left: -40px;
-  width: 130px;
-  animation: floatSoft 3.2s ease-in-out infinite alternate;
+/* Carl pasa a estar junto a la foto (donde estaba Dug) */
+.photo-carl {
+  top: -30px;
+  right: -30px;
+  width: 110px;
+  animation: floatSoft 3.6s ease-in-out infinite alternate-reverse;
 }
 
-/* Russel colocado en la esquina inferior derecha de la foto */
+/* Russel colocado en la esquina inferior derecha */
 .photo-russel {
   bottom: -25px;
   right: -35px;
   width: 120px;
-  animation: floatSoft 3.8s ease-in-out infinite alternate-reverse;
+  animation: floatSoft 3.8s ease-in-out infinite alternate;
 }
 
 /* Metadata de la Fecha */
