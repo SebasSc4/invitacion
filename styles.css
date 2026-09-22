@@ -38,28 +38,30 @@
   100% { box-shadow: 0 0 0 0 rgba(92, 61, 46, 0); }
 }
 
-/* KEVIN EN EL BORDE/MARCO EXTERIOR INFERIOR DE LA TARJETA */
-.kevin-main-frame {
+/* KEVIN EN LA PARTE INFERIOR REAL DE LA TARJETA (TAMAÑO CONTROLADO) */
+.kevin-bottom-img {
   position: absolute;
-  bottom: -20px;
-  left: -45px;
-  width: 120px;
-  height: auto;
+  bottom: -15px;
+  left: -35px;
+  width: 110px;
+  max-height: 160px;
+  object-fit: contain;
   z-index: 30;
   pointer-events: none;
-  filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.3));
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.25));
   animation: kevinFloat 4s ease-in-out infinite alternate;
 }
 
 @keyframes kevinFloat {
   0% { transform: translateY(0) rotate(-2deg); }
-  100% { transform: translateY(-10px) rotate(2deg); }
+  100% { transform: translateY(-8px) rotate(2deg); }
 }
 
 @media (max-width: 480px) {
-  .kevin-main-frame {
-    width: 95px;
-    left: -25px;
-    bottom: -15px;
+  .kevin-bottom-img {
+    width: 90px;
+    max-height: 130px;
+    left: -20px;
+    bottom: -10px;
   }
 }
