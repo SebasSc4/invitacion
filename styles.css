@@ -232,23 +232,23 @@ body {
   filter: drop-shadow(0 12px 18px rgba(0,0,0,0.25));
 }
 
-/* La Casita pasa a la esquina superior derecha (donde estaba Carl) */
-.char-carl-top {
+/* La Casita arriba a la derecha */
+.char-house {
   top: -80px;
   right: -55px;
   width: 175px;
   animation: floatSoft 3.2s ease-in-out infinite alternate;
 }
 
-/* Dug pasa al lateral izquierdo (donde estaba la casita) */
-.char-dug {
+/* Carl en el lateral izquierdo (donde estaba Dug) */
+.char-carl {
   top: 180px;
   left: -70px;
   width: 165px;
   animation: floatSoft 3.5s ease-in-out infinite alternate-reverse;
 }
 
-/* Kevin: Abajo a la izquierda */
+/* Kevin abajo a la izquierda */
 .char-kevin {
   bottom: 80px;
   left: -65px;
@@ -262,8 +262,8 @@ body {
 }
 
 @media (max-width: 480px) {
-  .char-carl-top { width: 140px; right: -35px; top: -60px; }
-  .char-dug { width: 130px; left: -45px; }
+  .char-house { width: 140px; right: -35px; top: -60px; }
+  .char-carl { width: 130px; left: -45px; }
   .char-kevin { width: 140px; left: -45px; }
 }
 
@@ -332,7 +332,7 @@ body {
   object-position: center 18%;
 }
 
-/* ELEMENTOS JUNTO A LA FOTO (CARL Y RUSSEL) */
+/* ELEMENTOS JUNTO A LA FOTO (DUG Y RUSSEL) */
 .photo-elem {
   position: absolute;
   z-index: 3;
@@ -340,15 +340,15 @@ body {
   filter: drop-shadow(0 6px 12px rgba(0,0,0,0.22));
 }
 
-/* Carl pasa a estar junto a la foto (donde estaba Dug) */
-.photo-carl {
+/* Dug en la esquina superior izquierda del marco */
+.photo-dug {
   top: -30px;
-  right: -30px;
+  left: -30px;
   width: 110px;
   animation: floatSoft 3.6s ease-in-out infinite alternate-reverse;
 }
 
-/* Russel colocado en la esquina inferior derecha */
+/* Russel en la esquina inferior derecha del marco */
 .photo-russel {
   bottom: -25px;
   right: -35px;
