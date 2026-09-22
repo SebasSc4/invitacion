@@ -57,7 +57,7 @@
   <!-- Globos en segundo plano -->
   <div id="balloon-container" class="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true"></div>
 
-  <!-- Botón de Música Flotante con estilo brújula/placa -->
+  <!-- Botón de Música Flotante -->
   <button id="music-btn" title="Activar/Desactivar Música" class="fixed top-5 right-5 z-40 w-12 h-12 rounded-full bg-[#fffdf9] border-2 border-[#5c3d2e] text-[#5c3d2e] shadow-xl flex items-center justify-center text-xl hover:scale-110 transition duration-300">
     <i class="fa-solid fa-music"></i>
   </button>
@@ -67,10 +67,13 @@
   </audio>
 
   <!-- LIBRO / SCRAPBOOK PRINCIPAL -->
-  <main class="w-full max-w-md bg-[#f4ebd0] rounded-[2rem] shadow-2xl border-8 border-[#5c3d2e] relative z-10 overflow-hidden my-4 p-5 sm:p-7">
+  <main class="w-full max-w-md bg-[#f4ebd0] rounded-[2rem] shadow-2xl border-8 border-[#5c3d2e] relative z-10 overflow-visible my-4 p-5 sm:p-7">
     
+    <!-- KEVIN FLOTANDO EN EL BORDEMARCO EXTERIOR PRINCIPAL (ABAJO A LA IZQUIERDA) -->
+    <img src="kevin.png" alt="Kevin" class="kevin-main-frame" />
+
     <!-- Costura / Broche del Libro superior -->
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-4 bg-[#422a1f] rounded-b-xl shadow-md flex items-center justify-around px-2">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-4 bg-[#422a1f] rounded-b-xl shadow-md flex items-center justify-around px-2 z-20">
       <div class="w-2 h-2 rounded-full bg-amber-400"></div>
       <div class="w-2 h-2 rounded-full bg-amber-400"></div>
     </div>
@@ -94,7 +97,7 @@
       <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-28 h-7 bg-amber-100/70 backdrop-blur-sm -rotate-3 z-20 shadow-sm border-x-2 border-dashed border-amber-300/50"></div>
       
       <!-- Marco Polaroid -->
-      <div class="bg-white p-4 pb-8 rounded-lg shadow-xl border border-stone-200 rotate-1 transform transition hover:rotate-0 duration-300">
+      <div class="bg-white p-4 pb-8 rounded-lg shadow-xl border border-stone-200 rotate-1 transform transition hover:rotate-0 duration-300 relative">
         <div class="w-full aspect-[4/5] rounded overflow-hidden border border-stone-100">
           <img src="portada.jpeg" alt="Jaziel Emiliano" class="w-full h-full object-cover" />
         </div>
@@ -147,7 +150,7 @@
       </a>
     </section>
 
-    <!-- CUANTA REGRESIVA TIPO RELOJ DE VIGÍA -->
+    <!-- CUENTA REGRESIVA TIPO RELOJ DE VIGÍA -->
     <section class="bg-[#e0a96d]/30 border-2 border-[#e0a96d] rounded-2xl p-4 text-center my-6">
       <h4 class="font-adventure text-xs text-[#5c3d2e] tracking-widest uppercase mb-3 font-bold">
         ⏳ Tiempo para el Despegue
@@ -189,4 +192,4 @@
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script src="script.js"></script>
 </body>
-</html> 
+</html>
